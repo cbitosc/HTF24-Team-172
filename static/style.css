@@ -1,0 +1,110 @@
+/* Global styles for consistent box-sizing and reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-image: url('../images/5846497.jpg');
+; /* Background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Heading style */
+h1 {
+    color: #ffeb3b; /* Yellow color for contrast */
+    background-color: #3b5998; /* Dark blue background */
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px; /* Adds spacing between header and container */
+}
+
+/* Form container style */
+.container {
+    background-color: rgba(9, 57, 63, 0.8); /* Semi-transparent dark blue background */
+    width: 90%;
+    max-width: 450px; /* Limits width on larger screens */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3); /* More shadow for depth */
+    text-align: center;
+    color: #e0f7fa; /* Light bluish text color */
+}
+
+/* Label style */
+label {
+    display: block;
+    margin-top: 12px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+}
+
+/* Input and select field styles */
+input, select {
+    width: 90%;
+    padding: 8px;
+    margin-top: 8px;
+    border: 1px solid #007BFF;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+    outline: none; /* Removes default outline */
+}
+
+/* Button container spacing */
+.button-container {
+    margin-top: 20px;
+}
+
+/* Button base style */
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Primary button style */
+.primary-btn {
+    background-color: #007BFF;
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Secondary button style */
+.secondary-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+.secondary-btn:hover {
+    background-color: #5a6268;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Output style */
+h2#output {
+    margin-top: 15px;
+    color: #ffeb3b;
+    font-size: 1.2em;
+    text-align: center;
+}
+

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Score Prediction</title>
+    <script>
+        async function getPrediction(event) {
+            event.preventDefault();
+
+            // Get form data
+            const venue = document.getElementById('venue').value;
+            const batting_team = document.getElementById('batting_team').value;
+            const bowling_team = document.getElementById('bowling_team').value;
+            const runs = parseInt(document.getElementById('runs').value);
+            const wickets = parseInt(document.getElementById('wickets').value);
+            const overs = parseFloat(document.getElementById('overs').value);
+            const runs_last_5 = parseInt(document.getElementById('runs_last_5').value);
+            const wickets_last_5 = parseInt(document.getElementById('wickets_last_5').value);
+
+            // Prepare data payload
+            const data = {
+                venue: parseInt(venue),
+                batting_team: batting_team,
+                bowling_team: bowling_team,
+                runs: runs,
+                wickets: wickets,
+                overs: overs,
+                runs_last_5: runs_last_5,
+                wickets_last_5: wickets_last_5
+            };
+
+            // Send a POST request to the Flask backend
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            document.getElementById('output').innerText = `Predicted Score: ${result.predicted_score}`;
+        }
+    </script>
+</head>
+<body style="background-image: url('../static/images/5846497.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+
+    <div style="background-color: rgba(9, 57, 63, 0.8); width: 60%; padding: 30px; border-radius: 10px; box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3); text-align: center; max-width: 450px; color: #e0f7fa;">
+        <h1 style="color: #ffeb3b; background-color: #3b5998; padding: 10px; border-radius: 8px;">IPL Score Prediction</h1>
+        
+        <form onsubmit="getPrediction(event)" class="prediction-form">
+            <label for="venue" style="display: block; margin-top: 12px; color: #ffffff; font-weight: bold;">Venue ID:</label>
+            <input type="number" id="venue" name="venue" required style="width: 90%; padding: 8px; margin-top: 8px; border: 1px solid #007BFF; border-radius: 4px; background-color: #fff; color: #333; font-size: 14px;"><br>
+
+            <label for="batting_team" style="display: block; margin-top: 12px; color: #ffffff; font-weight: bold;">Batting Team:</label>
+            <select id="batting_team" name="batting_team" required style="width: 90%; padding: 8px; margin-top: 8px; border: 1px solid #007BFF; border-radius: 4px; background-color: #fff; color: #333; font-size: 14px;">
+                <option value="Chennai Super Kings">Chennai Super Kings</option>
+                <option value="Delhi Daredevils">Delhi Daredevils</option>
+                <option value="Kings XI Punjab">Kings XI Punjab</option>
+                <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                <option value="Mumbai Indians">Mumbai Indians</option>
+                <option value="Rajasthan Royals">Rajasthan Royals</option>
+                <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+            </select><br>
+
+            <label for="bowling_team" style="display: block; margin-top: 12px; color: #ffffff; font-weight: bold;">Bowling Team:</label>
+            <select id="bowling_team" name="bowling_team" required style="width: 90%; padding: 8px; margin-top: 8px; border: 1px solid #007BFF; border-radius: 4px; background-color: #fff; color: #333; font-size: 14px;">
+                <option value="Chennai Super Kings">Chennai Super Kings</option>
+                <option value="Delhi Daredevils">Delhi Daredevils</option>
+                <option value="Kings XI Punjab">Kings XI Punjab</option>
+                <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                <option value="Mumbai Indians">Mumbai Indians</option>
+                <option value="Rajasthan Royals">Rajasthan Royals</option>
+                <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+            </select><br>
+
+            <label for="runs" style="display: block; margin-top: 12px; color: #ffffff; font-weight: bold;">Runs:</label>
+            <input type="number" id="runs" name="runs" required style="width: 90%; padding: 8px; margin-top: 8px; border: 1px solid #007BFF; border-radius: 4px; background-color: #fff; color: #333; font-size: 14px;"><br>
+
+            <label for="wickets" style="display: block; margin-top: 12px; color: #ffffff; font-weight: bold;">Wickets:</label>
+            <input type="number" id="wickets" name="wickets" required style="width: 90%; padding: 8px; margin-top: 8px; border: 1px solid #007BFF; border-radius: 4px; background-color: #fff; color: #333; font-size: 14px;"><br>
+
+            <label for="overs" style="display: block; margin-top: 12px; color: #ffffff; font-weight: bold;">Overs:</label>
+            <input type="number" step="0.1" id="overs" name="overs" required style="width: 90%; padding: 8px; margin-top: 8px; border: 1px solid #007BFF; border-radius: 4px; background-color: #fff; color: #333; font-size: 14px;"><br>
+
+            <label for="runs_last_5" style="display: block; margin-top: 12px; color: #ffffff; font-weight: bold;">Runs in Last 5 Overs:</label>
+            <input type="number" id="runs_last_5" name="runs_last_5" required style="width: 90%; padding: 8px; margin-top: 8px; border: 1px solid #007BFF; border-radius: 4px; background-color: #fff; color: #333; font-size: 14px;"><br>
+
+            <label for="wickets_last_5" style="display: block; margin-top: 12px; color: #ffffff; font-weight: bold;">Wickets in Last 5 Overs:</label>
+            <input type="number" id="wickets_last_5" name="wickets_last_5" required style="width: 90%; padding: 8px; margin-top: 8px; border: 1px solid #007BFF; border-radius: 4px; background-color: #fff; color: #333; font-size: 14px;"><br>
+
+            <button type="submit" style="padding: 10px 20px; font-size: 16px; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; background-color: #007BFF; color: white; transition: background-color 0.3s ease, box-shadow 0.3s ease;">Predict</button>
+        </form>
+
+        <h2 id="output" style="margin-top: 15px; color: #ffeb3b; font-size: 1.2em;">Predicted Score: </h2>
+    </div>
+</body>
+</html>
+
+
+
