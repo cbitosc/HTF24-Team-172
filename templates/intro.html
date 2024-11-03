@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Score Prediction</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Animated gradient background */
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            text-align: center;
+            background: linear-gradient(270deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 600% 600%;
+            animation: gradient-animation 10s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animation for the IPL logo */
+        @keyframes logo-animation {
+            0% {
+                clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+                opacity: 0;
+            }
+            25% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                opacity: 1;
+            }
+            50% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                transform: scaleX(1.1);
+            }
+            75% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                transform: scaleX(1);
+            }
+            100% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                transform: scaleX(1);
+                opacity: 1;
+            }
+        }
+
+        /* IPL Logo styling */
+        .ipl-logo {
+            width: 400px;
+            height: 400px;
+            background: url('https://i.pinimg.com/originals/26/cb/84/26cb84eb869b8638c719e257560faa26.jpg') no-repeat center center;
+            background-size: contain;
+            animation: logo-animation 3s ease-in-out forwards;
+        }
+
+        /* Title styling */
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-top: 20px;
+            display: none;
+            background: linear-gradient(90deg, #e50914, #ffdd00);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 3px 3px 10px rgba(229, 9, 20, 0.5);
+            animation: fade-in 1s forwards;
+        }
+
+        /* Title fade-in animation */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Get Started button styling */
+        .cta-button {
+            background-color: #e50914;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #f40612;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated IPL Logo -->
+    <div class="ipl-logo"></div>
+
+    <!-- Creative Title -->
+    <div class="title">IPL Score Prediction</div>
+
+    <!-- Get Started Button -->
+    <button class="cta-button" onclick="goToMainPage()">Get Started</button>
+
+    <script>
+        // Show the title and button after the animation ends
+        document.querySelector('.ipl-logo').addEventListener('animationend', () => {
+            document.querySelector('.title').style.display = 'block';
+            document.querySelector('.cta-button').style.display = 'block';
+        });
+
+        // Function to go to the main functionalities page
+        function goToMainPage() {
+            window.location.href = "{{ url_for('index') }}"; // This points to the Flask route for the main prediction page
+        }
+    </script>
+</body>
+</html>
